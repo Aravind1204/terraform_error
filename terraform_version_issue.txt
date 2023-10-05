@@ -1,17 +1,14 @@
 │ Error: Request cancelled
 │
-│   with module.core-web-and-api-group-3-security.akamai_botman_custom_defined_bot.nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22,
-│   on core-web-and-api-group-3\security\bot-directory.tf line 88, in resource "akamai_botman_custom_defined_bot" "nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22":
-│   88: resource "akamai_botman_custom_defined_bot" "nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22" {
-│
+│   in resource "akamai_botman_custom_defined_bot" "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx":
+│  
 │ The plugin.(*GRPCProvider).UpgradeResourceState request was cancelled.
 ╵
 ╷
 │ Error: Plugin did not respond
 │
-│   with module.core-web-and-api-group-3-security.akamai_appsec_api_constraints_protection.production__bml,
-│   on core-web-and-api-group-3\security\protections.tf line 8, in resource "akamai_appsec_api_constraints_protection" "production__bml":
-│    8: resource "akamai_appsec_api_constraints_protection" "production__bml" {
+│   with 
+│     resource "akamai_appsec_api_constraints_protection" "xxxxx" {
 │
 │ The plugin encountered an error, and failed to respond to the plugin.(*GRPCProvider).ReadResource call. The plugin logs may contain more details.
 

@@ -1,0 +1,52 @@
+│ Error: Request cancelled
+│
+│   with module.core-web-and-api-group-3-security.akamai_botman_custom_defined_bot.nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22,
+│   on core-web-and-api-group-3\security\bot-directory.tf line 88, in resource "akamai_botman_custom_defined_bot" "nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22":
+│   88: resource "akamai_botman_custom_defined_bot" "nessus_scanner_8cedbe8a-c541-42d6-821e-ebdf00432e22" {
+│
+│ The plugin.(*GRPCProvider).UpgradeResourceState request was cancelled.
+╵
+╷
+│ Error: Plugin did not respond
+│
+│   with module.core-web-and-api-group-3-security.akamai_appsec_api_constraints_protection.production__bml,
+│   on core-web-and-api-group-3\security\protections.tf line 8, in resource "akamai_appsec_api_constraints_protection" "production__bml":
+│    8: resource "akamai_appsec_api_constraints_protection" "production__bml" {
+│
+│ The plugin encountered an error, and failed to respond to the plugin.(*GRPCProvider).ReadResource call. The plugin logs may contain more details.
+
+
+Stack trace from the terraform-provider-akamai_v5.3.0.exe plugin:
+
+panic: runtime error: invalid memory address or nil pointer dereference
+[signal 0xc0000005 code=0x0 addr=0x0 pc=0x944b5a]
+
+goroutine 3077 [running]:
+github.com/akamai/terraform-provider-akamai/v5/pkg/providers/appsec.resourceAttackGroupRead({0x130f798, 0xc021a76ae0}, 0xc021a22d80, {0xf63b00, 0xc015ffe5a0})
+        github.com/akamai/terraform-provider-akamai/v5/pkg/providers/appsec/resource_akamai_appsec_attack_group.go:166 +0x77a
+github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema.(*Resource).read(0xc014d36d20, {0x130f7d0, 0xc021a763f0}, 0xd?, {0xf63b00, 0xc015ffe5a0})
+        github.com/hashicorp/terraform-plugin-sdk/v2@v2.27.0/helper/schema/resource.go:750 +0x12e
+github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema.(*Resource).RefreshWithoutUpgrade(0xc014d36d20, {0x130f7d0, 0xc021a763f0}, 0xc021a42b60, {0xf63b00, 0xc015ffe5a0})
+        github.com/hashicorp/terraform-plugin-sdk/v2@v2.27.0/helper/schema/resource.go:1044 +0x59e
+github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema.(*GRPCProviderServer).ReadResource(0xc014d09278, {0x130f7d0?, 0xc021a762d0?}, 0xc021a33180)
+        github.com/hashicorp/terraform-plugin-sdk/v2@v2.27.0/helper/schema/grpc_provider.go:616 +0x4a5
+github.com/hashicorp/terraform-plugin-mux/tf5muxserver.muxServer.ReadResource({0xc015f3ccf0, 0xc0172a3450, 0xc015f3cd20, 0xc015f3cd50, {0xc015df6800, 0x2, 0x2}}, {0x130f7d0?, 0xc021a61f80?}, 0xc021a33180)
+        github.com/hashicorp/terraform-plugin-mux@v0.11.2/tf5muxserver/mux_server_ReadResource.go:29 +0x139
+github.com/hashicorp/terraform-plugin-go/tfprotov5/tf5server.(*server).ReadResource(0xc0145db400, {0x130f7d0?, 0xc021a617d0?}, 0xc021a2ae40)
+        github.com/hashicorp/terraform-plugin-go@v0.18.0/tfprotov5/tf5server/server.go:751 +0x4b1
+github.com/hashicorp/terraform-plugin-go/tfprotov5/internal/tfplugin5._Provider_ReadResource_Handler({0x105cce0?, 0xc0145db400}, {0x130f7d0, 0xc021a617d0}, 0xc021a52a10, 0x0)
+        github.com/hashicorp/terraform-plugin-go@v0.18.0/tfprotov5/internal/tfplugin5/tfplugin5_grpc.pb.go:386 +0x170
+google.golang.org/grpc.(*Server).processUnaryRPC(0xc014436960, {0x13156b8, 0xc01600e1a0}, 0xc021966360, 0xc015fd2ba0, 0x1a81730, 0x0)
+        google.golang.org/grpc@v1.56.1/server.go:1337 +0xdf3
+google.golang.org/grpc.(*Server).handleStream(0xc014436960, {0x13156b8, 0xc01600e1a0}, 0xc021966360, 0x0)
+        google.golang.org/grpc@v1.56.1/server.go:1714 +0xa36
+google.golang.org/grpc.(*Server).serveStreams.func1.1()
+        google.golang.org/grpc@v1.56.1/server.go:959 +0x98
+created by google.golang.org/grpc.(*Server).serveStreams.func1
+        google.golang.org/grpc@v1.56.1/server.go:957 +0x18c
+
+Error: The terraform-provider-akamai_v5.3.0.exe plugin crashed!
+
+This is always indicative of a bug within the plugin. It would be immensely
+helpful if you could report the crash with the plugin's maintainers so that it
+can be fixed. The output above should help diagnose the issue.
